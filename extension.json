@@ -1,0 +1,107 @@
+{
+  "id": "checks",
+  "version": "0.1.0",
+  "api": 1,
+  "squadron": ">=0.59.0",
+  "name": {
+    "en": "Checks",
+    "fr": "Contrôles"
+  },
+  "description": {
+    "en": "Quality checks on the files each agent changed, at the end of its turn: PHP syntax, PHPStan, PHP-CS-Fixer, YAML and Twig lint, composer validate and ESLint, run with the project's own config in Docker. A green or red chip on the agent, the details in a panel, and one click to ask the agent to fix them.",
+    "fr": "Des contrôles qualité sur les fichiers que chaque agent a modifiés, à la fin de son tour : syntaxe PHP, PHPStan, PHP-CS-Fixer, lint YAML et Twig, composer validate et ESLint, avec la configuration du projet, dans Docker. Une pastille verte ou rouge sur l’agent, le détail dans un panneau, et un clic pour lui demander de corriger."
+  },
+  "logo": "logo.svg",
+  "wasm": "target/wasm32-wasip2/release/checks.wasm",
+  "permissions": {
+    "exec": [
+      "git",
+      "docker",
+      "id"
+    ]
+  },
+  "contributes": {
+    "items": [
+      {
+        "slot": "agent.tools",
+        "id": "checks",
+        "label": {
+          "en": "Checks",
+          "fr": "Contrôles"
+        },
+        "hint": {
+          "en": "Quality checks on the files this agent changed",
+          "fr": "Contrôles qualité des fichiers modifiés par cet agent"
+        },
+        "icon": "logo",
+        "words": [
+          "phpstan",
+          "lint",
+          "qualité",
+          "quality",
+          "cs-fixer",
+          "eslint",
+          "checks",
+          "contrôles"
+        ],
+        "action": {
+          "panel.open": "main"
+        }
+      }
+    ],
+    "panels": [
+      {
+        "id": "main",
+        "title": {
+          "en": "Checks",
+          "fr": "Contrôles"
+        },
+        "page": "panel/index.html"
+      }
+    ],
+    "tools": [
+      {
+        "name": "run",
+        "description": "Runs the project's quality checks (PHP syntax, PHPStan, PHP-CS-Fixer, YAML and Twig lint, composer validate, ESLint, each when the project uses it) on the files changed in this worktree, and returns the problems found. Call it before saying your work is done, and again after fixing."
+      }
+    ],
+    "settings": {
+      "options": [
+        {
+          "id": "auto",
+          "label": {
+            "en": "Check at the end of each agent turn",
+            "fr": "Contrôler à la fin de chaque tour d’agent"
+          },
+          "hint": {
+            "en": "Only when the agent changed something since the last check.",
+            "fr": "Seulement quand l’agent a changé quelque chose depuis le dernier contrôle."
+          },
+          "kind": "toggle",
+          "default": true
+        },
+        {
+          "id": "php-image",
+          "label": {
+            "en": "PHP Docker image",
+            "fr": "Image Docker PHP"
+          },
+          "hint": {
+            "en": "Empty: php:<version>-cli, the version taken from .lando.yml or composer.json.",
+            "fr": "Vide : php:<version>-cli, la version lue dans .lando.yml ou composer.json."
+          },
+          "kind": "text"
+        },
+        {
+          "id": "node-image",
+          "label": {
+            "en": "Node Docker image for ESLint",
+            "fr": "Image Docker Node pour ESLint"
+          },
+          "kind": "text",
+          "default": "node:22"
+        }
+      ]
+    }
+  }
+}

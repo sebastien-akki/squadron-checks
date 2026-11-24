@@ -1,0 +1,105 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  gap: 10px;
+  overflow-y: auto;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bar .status {
+  flex: 1;
+  min-width: 0;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.empty {
+  margin: 16px 4px;
+  line-height: 1.5;
+}
+
+.error {
+  color: var(--err-text);
+}
+
+.check {
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 1px var(--border);
+  padding: 8px 10px;
+}
+
+.check .head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.check .head strong {
+  color: var(--text-strong);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  flex: none;
+  align-self: center;
+  background: var(--text-dim);
+}
+
+.dot.ok {
+  background: var(--ok-text);
+}
+
+.dot.err {
+  background: var(--err-text);
+}
+
+.problems {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+}
+
+.problems code {
+  font-family: var(--mono);
+  color: var(--text-strong);
+  margin-right: 6px;
+}
+
+.check pre {
+  margin: 6px 0 0;
+  padding: 6px 8px;
+  border-radius: 4px;
+  background: var(--surface-2);
+  font-family: var(--mono);
+  font-size: 11px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.hint {
+  font-size: 12px;
+  line-height: 1.5;
+}
